@@ -25,6 +25,11 @@ public abstract class AnnotationProcessorsProvider {
     }
 
     public void register(AnnotationProcessor processor) {
+        for (AnnotationProcessor existingProcessor : processors) {
+          if (existingProcessor.getClass().equals(processor.getClass())) {
+            return;
+          }
+        }
         processors.add(processor);
     }
 
